@@ -1,0 +1,6 @@
+<div (keypress)="pulsarIntro($event, pregunta, respuesta)" class="container p-5 my-5 bg-dark text-white">
+    <label>Pregunta: <input #pregunta type="text"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <label>Respuesta: <input #respuesta type="text"></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-outline-success" (click)="crearBroma(pregunta, respuesta)">Añadir Pregunta</button><br>
+    <label id="err" [hidden]="escondido">Rellena todos los campos para añadir una pregunta.</label>
+</div>

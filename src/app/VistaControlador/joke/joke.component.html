@@ -1,0 +1,6 @@
+<div (dblclick)="eliminarBroma(bromaHijo)" class="container p-5 my-5 border">
+  <h2>{{ bromaHijo.getPregunta() }}</h2>
+  <p [hidden]="bromaHijo.isEscondido()">{{ bromaHijo.getRespuesta() }}</p>
+  <button class="btn btn-outline-info" (click)="bromaHijo.setEscondido()">Mostrar</button>&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-outline-danger" (click)="eliminarBroma(bromaHijo)">Eliminar</button>
+</div>

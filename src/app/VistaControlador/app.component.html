@@ -1,0 +1,3 @@
+<app-joke-form (enviarBroma)="anadirBromaServ($event)"></app-joke-form>
+<br>
+<app-joke *ngFor="let bromaPadre of serv.getListaBromas()" [bromaHijo]="bromaPadre" (bromaAEliminar)="eliminarBroma($event)"></app-joke>
