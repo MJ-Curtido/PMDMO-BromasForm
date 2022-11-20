@@ -5,3 +5,11 @@ label {
 #err {
     color: red;
 }
+
+.incorrecto {
+    border: 2px solid red;
+}
+
+.correcto {
+    border: 2px solid greenyellow;
+}

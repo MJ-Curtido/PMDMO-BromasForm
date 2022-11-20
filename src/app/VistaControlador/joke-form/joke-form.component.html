@@ -1,8 +1,29 @@
-<form nonvalidate>
+<form [formGroup]="miFormulario">
     <div (keypress)="pulsarIntro($event, pregunta, respuesta)" class="container p-5 my-5 bg-dark text-white">
-        <label>Pregunta: <input #pregunta type="text" class="form-control"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <label>Respuesta: <input #respuesta type="text"></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label>
+            Pregunta:
+            <input formControlName="formPregunta"
+                #pregunta type="text"
+                class="form-control"
+                [ngClass]="{
+                    'incorrecto': formPregunta.invalid,
+                    'correcto': formPregunta.valid
+                }">
+        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <label>
+            Respuesta:
+            <input formControlName="formRespuesta"
+                #respuesta type="text"
+                class="form-control"
+                [ngClass]="{
+                    'incorrecto': formRespuesta.invalid,
+                    'correcto': formRespuesta.valid
+                }">
+        </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
         <button class="btn btn-outline-success" (click)="crearBroma(pregunta, respuesta)">Añadir Pregunta</button><br>
-        <label id="err" *ngIf="escondido">Rellena todos los campos para añadir una pregunta.</label>
+        
+        <label id="err" *ngIf="formPregunta.invalid || formRespuesta.invalid">Rellena todos los campos para añadir una pregunta.</label>
     </div>
 </form>
