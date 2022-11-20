@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Joke } from "../Modelo/joke";
-import { Servicio } from '../Modelo/servicio';
+import { ServicioService } from '../Modelo/servicio.service';
 
 @Component({
   selector: 'joke-list',
@@ -8,10 +8,8 @@ import { Servicio } from '../Modelo/servicio';
   styleUrls: ['./app.component.css']
 })
 export class JokeListComponent {
-  serv:Servicio;
 
-  constructor() {
-    this.serv = new Servicio();
+  constructor(protected serv: ServicioService) {
   }
 
   anadirBromaServ(broma:Joke) {
