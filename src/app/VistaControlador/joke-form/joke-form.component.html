@@ -6,7 +6,7 @@
                 #pregunta type="text"
                 class="form-control"
                 [ngClass]="{
-                    'incorrecto': formPregunta.invalid,
+                    'incorrecto': formPregunta.invalid && formPregunta.dirty,
                     'correcto': formPregunta.valid
                 }">
         </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -17,13 +17,13 @@
                 #respuesta type="text"
                 class="form-control"
                 [ngClass]="{
-                    'incorrecto': formRespuesta.invalid,
+                    'incorrecto': formRespuesta.invalid && formRespuesta.dirty,
                     'correcto': formRespuesta.valid
                 }">
         </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
         <button class="btn btn-outline-success" (click)="crearBroma(pregunta, respuesta)">Añadir Pregunta</button><br>
         
-        <label id="err" *ngIf="formPregunta.invalid || formRespuesta.invalid">Rellena todos los campos para añadir una pregunta.</label>
+        <label id="err" *ngIf="(formPregunta.invalid || formRespuesta.invalid) && (formPregunta.touched || formRespuesta.touched)">Rellena todos los campos para añadir una pregunta.</label>
     </div>
 </form>
