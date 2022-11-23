@@ -20,12 +20,12 @@ export class JokeFormComponent implements OnInit {
 
   ngOnInit() {
     this.formPregunta = new FormControl('', [
-      Validators.minLength(1),
+      Validators.minLength(6),
       Validators.required
     ]);
 
     this.formRespuesta = new FormControl('', [
-      Validators.minLength(1),
+      Validators.minLength(6),
       Validators.required
     ]);
 
