@@ -51,5 +51,6 @@ export class JokeFormComponent implements OnInit {
     }
     pregunta.value = '';
     respuesta.value = '';
+    this.miFormulario.reset();
   }
 }
