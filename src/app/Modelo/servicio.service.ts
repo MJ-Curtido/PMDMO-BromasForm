@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Joke } from "./joke";
 
 @Injectable({
@@ -6,6 +7,7 @@ import { Joke } from "./joke";
 })
 export class ServicioService {
   listaBromas:Joke[];
+  private _listaBromas$: BehaviorSubject<Joke[]>;
 
   constructor() {
       this.listaBromas = [
@@ -13,10 +15,15 @@ export class ServicioService {
           new Joke("What kind of cheese do you use to disguise a small horse?", "Mask-a-pony (Mascarpone)"),
           new Joke("A kid threw a lump of cheddar at me", "I thought ‘That’s not very mature’")
         ]
+        this._listaBromas$ = new BehaviorSubject<Joke[]>(this.listaBromas);
   }
 
   getListaBromas() {
       return this.listaBromas;
+  }
+
+  get listabromas$(): Observable<Joke[]> {
+    return this._listaBromas$.asObservable();
   }
 
   getBroma(ind:number) {
@@ -25,9 +32,11 @@ export class ServicioService {
   
   anadirBroma(broma:Joke) {
       this.listaBromas.unshift(broma);
+      this._listaBromas$.next( [...this.listaBromas] );
   }
 
   eliminarBromaServ(broma:Joke) {
       this.listaBromas = this.listaBromas.filter((bromaServ) => bromaServ.getId() !== broma.getId());
+      this._listaBromas$.next( [...this.listaBromas] );
   }
 }

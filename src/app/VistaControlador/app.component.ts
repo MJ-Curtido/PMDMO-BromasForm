@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Joke } from "../Modelo/joke";
 import { ServicioService } from '../Modelo/servicio.service';
 
@@ -7,9 +8,14 @@ import { ServicioService } from '../Modelo/servicio.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class JokeListComponent {
+export class JokeListComponent implements OnInit {
+  _bromas!: Observable<Joke[]>;
 
   constructor(protected serv: ServicioService) {
+  }
+  ngOnInit(): void {
+    this._bromas = this.serv.listabromas$;
+    //this.serv.listabromas$.subscribe( bromas => this._chistes = bromas );
   }
 
   anadirBromaServ(broma:Joke) {
