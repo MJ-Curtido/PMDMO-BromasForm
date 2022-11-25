@@ -9,13 +9,11 @@ import { Joke } from 'src/app/Modelo/joke';
 })
 export class JokeFormComponent implements OnInit {
   @Output() enviarBroma = new EventEmitter<Joke>();
-  escondido: Boolean
   miFormulario!: FormGroup;
   formPregunta!: FormControl;
   formRespuesta!: FormControl;
 
   constructor() {
-    this.escondido = true;
   }
 
   ngOnInit() {
@@ -35,22 +33,14 @@ export class JokeFormComponent implements OnInit {
     });
   }
 
-  pulsarIntro(e:KeyboardEvent, pregunta:HTMLInputElement, respuesta:HTMLInputElement) {
-    if (e.key == 'Enter') {
-      this.crearBroma(pregunta, respuesta);
+  pulsarIntro(e:KeyboardEvent) {
+    if (e.key == 'Enter' && this.miFormulario.valid) {
+      this.crearBroma();
     }
   }
 
-  crearBroma(pregunta:HTMLInputElement, respuesta:HTMLInputElement) {
-    if (pregunta.value !== '' && respuesta.value !== '') {
-      this.escondido = true;
-      this.enviarBroma.emit(new Joke(pregunta.value, respuesta.value));
-    }
-    else {
-      this.escondido = false;
-    }
-    pregunta.value = '';
-    respuesta.value = '';
+  crearBroma() {
+    this.enviarBroma.emit(new Joke(this.formPregunta.value, this.formRespuesta.value));
     this.miFormulario.reset();
   }
 }

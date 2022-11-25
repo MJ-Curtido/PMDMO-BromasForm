@@ -1,9 +1,9 @@
-<form [formGroup]="miFormulario">
-    <div (keypress)="pulsarIntro($event, pregunta, respuesta)" class="container p-5 my-5 bg-dark text-white">
+<form [formGroup]="miFormulario" novalidate>
+    <div (keypress)="pulsarIntro($event)" class="container p-5 my-5 bg-dark text-white">
         <label>
             Pregunta:
             <input formControlName="formPregunta"
-                #pregunta type="text"
+                type="text"
                 class="form-control"
                 [ngClass]="{
                     'incorrecto': formPregunta.invalid && formPregunta.dirty,
@@ -14,7 +14,7 @@
         <label>
             Respuesta:
             <input formControlName="formRespuesta"
-                #respuesta type="text"
+                type="text"
                 class="form-control"
                 [ngClass]="{
                     'incorrecto': formRespuesta.invalid && formRespuesta.dirty,
@@ -22,8 +22,8 @@
                 }">
         </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
-        <button class="btn btn-outline-success" (click)="crearBroma(pregunta, respuesta)">Añadir Pregunta</button><br>
-        
-        <label id="err" *ngIf="(formPregunta.invalid || formRespuesta.invalid) && (formPregunta.touched || formRespuesta.touched)">Rellena todos los campos para añadir una pregunta.</label>
+        <button [disabled]="miFormulario.invalid" class="btn btn-outline-success" (click)="crearBroma()">Añadir Pregunta</button><br>
+        <!-- Añadir este error en cada campo y con los 2 errores con .errors['minLengt'] y el required -->
+        <label id="err" *ngIf="miFormulario.invalid && formPregunta.touched">Rellena todos los campos para añadir una pregunta.</label>
     </div>
 </form>
